@@ -1,0 +1,107 @@
+<Window x:Class="VideoScreensaverBuilder.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Video Screensaver Builder"
+        Width="500"
+        Height="360"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Background="#1e1e1e">
+
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Background" Value="#2d2d2d"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="#3d3d3d"/>
+            <Setter Property="Padding" Value="8,6"/>
+            <Setter Property="FontSize" Value="13"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#0078d4"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="16,8"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Title -->
+        <TextBlock x:Name="txtHeader" Grid.Row="0" Text="Video Screensaver Builder" FontSize="20" FontWeight="SemiBold"/>
+
+        <!-- Video Path -->
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBox x:Name="txtVideoPath" Grid.Column="0" IsReadOnly="True"
+                     Text="Select a video file..."/>
+            <Button x:Name="btnBrowse" Grid.Column="2" Content="Browse..."
+                    Click="btnBrowse_Click" Width="100"/>
+        </Grid>
+
+        <!-- Output Name -->
+        <Grid Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock x:Name="txtOutputNameLabel" Grid.Column="0" Text="Output name:" VerticalAlignment="Center"/>
+            <TextBox x:Name="txtOutputName" Grid.Column="2" Text="MyScreensaver"/>
+        </Grid>
+
+        <!-- Output Path -->
+        <Grid Grid.Row="6">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBox x:Name="txtOutputPath" Grid.Column="0" IsReadOnly="True"
+                     Text="Select output folder..."/>
+            <Button x:Name="btnOutputBrowse" Grid.Column="2" Content="Browse..."
+                    Click="btnOutputBrowse_Click" Width="100"/>
+        </Grid>
+
+        <!-- Status -->
+        <TextBlock x:Name="txtStatus" Grid.Row="8" Text="Ready"
+                   Foreground="#888" VerticalAlignment="Bottom"/>
+
+        <!-- Build Button -->
+        <Button x:Name="btnBuild" Grid.Row="8" Content="Build .scr"
+                HorizontalAlignment="Right" Click="btnBuild_Click"
+                Width="120" Height="40" Margin="0,16,0,0"/>
+
+        <!-- Progress -->
+        <ProgressBar x:Name="progressBar" Grid.Row="8" Height="4"
+                     VerticalAlignment="Top" Margin="0,-10,0,0"
+                     Background="#2d2d2d" Foreground="#0078d4"
+                     Visibility="Collapsed"/>
+
+        <!-- Footer -->
+        <TextBlock x:Name="txtFooter" Grid.Row="9" Text="Made by ControlOverflow"
+                   Foreground="#555" FontSize="11"
+                   HorizontalAlignment="Center" Margin="0,8,0,0"/>
+    </Grid>
+</Window>

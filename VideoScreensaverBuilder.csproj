@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AssemblyName>VideoScreensaverBuilder</AssemblyName>
+
+    <!-- Single File Publish -->
+    <PublishSingleFile>true</PublishSingleFile>
+    <SelfContained>true</SelfContained>
+    <EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
+    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Exclude template files from compilation -->
+    <Compile Remove="ScreensaverSource\**\*" />
+    <Page Remove="ScreensaverSource\**\*" />
+    <None Remove="ScreensaverSource\**\*" />
+
+    <!-- Include screensaver source files as embedded resources -->
+    <EmbeddedResource Include="ScreensaverSource\**\*" />
+  </ItemGroup>
+
+</Project>
