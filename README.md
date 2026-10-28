@@ -1,72 +1,64 @@
-# Video Screensaver Builder
+# 🎬 Video Screensaver Builder‑CN
+一款 Windows 自定义视频屏保制作工具，可以生成内嵌视频的独立 `.scr` 屏保单文件，**无需任何额外依赖**。
 
-A Windows tool to create custom video screensavers. Generate a single `.scr` file with your video embedded - no dependencies required.
+## ✨ 功能特性
+- 📦 **单文件输出**：仅生成一个 `.scr` 文件，不需要附带任何 DLL 动态库
+- 🌐 **自动界面语言**：简体中文 Windows 自动加载中文界面，其他系统默认英文
+- 🎞️ **视频内嵌打包**：视频资源直接封装进屏保内部，不用单独存放视频
+- 🖥️ **多显示器支持**：自动识别所有显示器，全部屏幕同步播放视频
+- 🔁 **自动循环播放**：视频播放完毕自动从头重播
+- 🚪 **便捷退出**：移动鼠标、点击鼠标、按下任意键盘按键即可退出屏保
 
-## Features
+## 🚀 快速上手
+1. 前往 [Releases](../../releases) 下载 `VideoScreensaverBuilder.exe`
+2. 运行工具，选择你的视频文件（**推荐 MP4 格式，兼容性最好**）
+3. 点击【生成 .scr】
+4. 对生成好的 `.scr` 文件右键 → **安装**，即可设置为系统屏保
 
-- **Single file output** - Creates one `.scr` file, no DLLs needed
-- **Automatic interface language** - Uses Simplified Chinese on Simplified Chinese Windows; otherwise English
-- **Embedded video** - Video is packed inside the screensaver
-- **Multi-monitor** - Plays on all screens simultaneously
-- **Loop playback** - Video restarts automatically
-- **Easy exit** - Move mouse, press any key, or click to exit
+## 💻 系统要求
+- 操作系统：Windows 10 / Windows 11
+- 运行打包后的 `.scr` 屏保：不需要额外安装任何运行库
+- 运行打包工具本体：需要预先安装 **.NET 8 SDK**
 
-## Quick Start
-
-1. Download `VideoScreensaverBuilder.exe` from [Releases](../../releases)
-2. Run the Builder and select your video file (MP4 recommended)
-3. Click **Build .scr** (or **生成 .scr** on Simplified Chinese Windows)
-4. Right-click the generated `.scr` file → **Install**
-
-## System Requirements
-
-- Windows 10 or Windows 11
-- To run generated `.scr` files: Nothing additional
-- To use Builder: .NET 8 SDK
-
-## Building from Source
-
+## 🛠️ 源码编译
 ```bash
-git clone https://github.com/ControlOverflow/VideoScreensaverBuilder.git
-cd VideoScreensaverBuilder
+git clone https://github.com/BJYuChe/VideoScreensaverBuilder-CN.git
+cd VideoScreensaverBuilder-CN
 dotnet publish -c Release -r win-x64 --self-contained -p:PublishSingleFile=true -o publish
-```
+编译完成后，程序输出在 `publish` 文件夹内。
 
-## Project Structure
-
-```
-VideoScreensaverBuilder/
-├── VideoScreensaverBuilder.sln      # Solution file
-├── VideoScreensaverBuilder.csproj   # Builder project
-├── App.xaml                         # WPF application
-├── MainWindow.xaml                  # Builder UI
-├── MainWindow.xaml.cs               # Builder logic
-├── ScreensaverSource/               # Screensaver template (embedded)
+VideoScreensaverBuilder-CN/
+├── VideoScreensaverBuilder.sln      # 解决方案文件
+├── VideoScreensaverBuilder.csproj   # 打包工具主项目
+├── App.xaml                         # WPF 应用入口
+├── MainWindow.xaml                  # 打包工具 UI 界面
+├── MainWindow.xaml.cs               # 打包工具业务逻辑
+├── ScreensaverSource/               # 屏保模板（程序内嵌调用）
 │   ├── VideoScreensaver.csproj
 │   ├── Program.cs
 │   ├── ScreensaverWindow.xaml
 │   └── ScreensaverWindow.xaml.cs
 ├── README.md
 └── LICENSE
-```
 
-## How It Works
 
-1. Builder extracts template files to a temp folder
-2. Copies your video as `Resources/video.mp4`
-3. Runs `dotnet publish` to create a single-file executable
-4. Renames output to `.scr` (Windows screensaver format)
+## 🧩 工作原理
 
-## Technologies
+1. 打包工具将内置屏保模板解压到系统临时文件夹
+2. 将选中视频复制到模板资源目录，命名为 `Resources/video.mp4`
+3. 调用 `dotnet publish` 编译模板，生成独立单文件程序
+4. 将编译输出重命名为 `.scr`，也就是 Windows 识别的屏保格式
 
-- **.NET 8** - WPF (Windows Presentation Foundation)
-- **Windows Media Foundation** - Native video playback
-- **Single-file publish** - Self-contained executable
+## ⚙️ 技术栈
 
-## License
+- .NET 8 + WPF（Windows Presentation Foundation）
+- Windows Media Foundation：调用系统原生解码器播放视频
+- .NET 单文件独立发布模式（Self-contained）
 
-MIT License - See [LICENSE](LICENSE) for details.
+## 📜 开源协议
 
-## Contact
+MIT 开源协议，详情查看 [LICENSE](LICENSE) 文件。
 
-ControlOverflow - contact@controloverflow.dev
+## 📮 原作者信息
+
+宇澈音频 © 独家编译
